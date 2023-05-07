@@ -8,18 +8,34 @@
 
 `yarn start`를 통해 프로젝트를 시작할 수 있습니다.
 
-### ToDo 사용해보기
+### Exchange Rate 사용해보기
 
 아래의 링크에서 실제 작동되는 App을 확인할 수 있습니다.
 
-[🏃‍♂️ ToDo 사용해보기](https://matthew--roaring-kelpie-519f5d.netlify.app/)
+[💰 Exchange Rate 사용해보기](https://matthew--roaring-kelpie-519f5d.netlify.app/)
 
 ---
 
 # 프로젝트 파일 구조
 
 ```js
-프로젝트 완성 후 올리기!
+📦src
+ ┣ 📂components
+ ┃ ┣ 📜InputAmount.jsx
+ ┃ ┣ 📜SelectCountry.jsx
+ ┃ ┗ 📜SwitchCurrency.jsx
+ ┣ 📂context
+ ┃ ┗ 📜CurrencyContext.jsx
+ ┣ 📂hooks
+ ┃ ┗ 📜useAxios.jsx
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜App.test.js
+ ┣ 📜index.css
+ ┣ 📜index.js
+ ┣ 📜logo.svg
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
 ```
 
 ---
@@ -45,12 +61,16 @@
 
 ### Exchange Rate 앱 핵심 기능
 
-- [x] Material UI 이용 디자인
-  - [x] codepen.io에서 Bacground Animation 받아와 디자인
-  - [x] FreecurrencyAPI 이용
+- [x] Material UI 이용 디자인
+- [x] codepen.io에서 Background Animation 받아와 적용시켜보기
+- [x] `CurrencyAPI` 이용
 - [x] 국가별 환율 계산 구현
-  - [x] 모바일 환경 반응형 디자인
-- [x] `netlify` 활용 배포!
+- [x] 모바일 환경 반응형 디자인
+- [x] `useContext` 활용
+- [x] `useAxios` hook 제작
+- [x] `axios` `param` 접근
+- [ ] `netlify` 활용 배포! (버그 수정 후)
+- [ ] https://restcountries.com/v3.1/all 국가별 환율 관련 정보 / 이미지 받아오기
 
 ---
 
@@ -62,7 +82,7 @@
 
 ### Trouble Shooting 🛠️
 
-ToDo프로젝트를 진행하면서 발생한 `버그 수정`, `문제 해결`, 기능 구현시 `어려웠던 점 정리`, `성능 개선`, `작업 효율 향상` 들에 관해 정리한 기록입니다.
+`Exchange Rate` 프로젝트를 진행하면서 발생한 `버그 수정`, `문제 해결`, 기능 구현시 `어려웠던 점 정리`, `성능 개선`, `작업 효율 향상` 들에 관해 정리한 기록입니다.
 
 [프로젝트를 진행시 배운점들 정리]()
 
@@ -71,3 +91,5 @@ ToDo프로젝트를 진행하면서 발생한 `버그 수정`, `문제 해결`, 
 ### 버그 발생시 ☎️
 
 연락 부탁드립니다. <dydals3440@gmail.com>
+
+1. 현재 국가변경시 App이 Crash되는 현상이 발생되어 수정중입니다. 수정 후 배포하겠습니다.
