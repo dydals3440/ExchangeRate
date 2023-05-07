@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import InputAmount from './components/InputAmount';
 import SelectCountry from './components/SelectCountry';
 import SwitchCurrency from './components/SwitchCurrency';
+import { useContext } from 'react';
+import { CurrencyContext } from './context/CurrencyContext';
 
-function App({ text }) {
+function App() {
+  const { fromCurrency, setFromCurrency, toCurrency, setToCurrency } =
+    useContext(CurrencyContext);
+
   const boxStyles = {
     background: '#fdfdfd',
     marginTop: '10rem',
@@ -26,9 +30,13 @@ function App({ text }) {
       </Typography>
       <Grid container spacing={2}>
         <InputAmount />
-        <SelectCountry text='from' />
+        <SelectCountry
+          label='From'
+          value={fromCurrency}
+          setValue={setFromCurrency}
+        />
         <SwitchCurrency />
-        <SelectCountry text='to' />
+        <SelectCountry label='To' value={toCurrency} setValue={setToCurrency} />
       </Grid>
     </Container>
   );
