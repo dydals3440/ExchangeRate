@@ -23,13 +23,13 @@ export default function SelectCountry(props) {
       item.name.common
     }`;
   });
-  console.log(dataCountries);
 
   return (
     <Grid item xs={12} md={3}>
       <Autocomplete
+        disableClearable
         value={value}
-        onChange={(e, newValue) => {
+        onChange={(newValue, e) => {
           setValue(newValue);
         }}
         options={dataCountries}

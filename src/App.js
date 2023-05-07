@@ -1,14 +1,40 @@
 import './App.css';
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import InputAmount from './components/InputAmount';
 import SelectCountry from './components/SelectCountry';
 import SwitchCurrency from './components/SwitchCurrency';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CurrencyContext } from './context/CurrencyContext';
+import axios from 'axios';
 
 function App() {
-  const { fromCurrency, setFromCurrency, toCurrency, setToCurrency } =
-    useContext(CurrencyContext);
+  const {
+    fromCurrency,
+    setFromCurrency,
+    toCurrency,
+    setToCurrency,
+    firstAmount,
+  } = useContext(CurrencyContext);
+  // ['🇶🇦', 'QAR', '-', 'Qatar'] +[1] = QAR
+  const [resultCurrency, setResultCurrency] = useState(0);
+  const codeFromCurrency = fromCurrency.toString().split(' ')[1];
+  const codeToCurrency = toCurrency.toString().split(' ')[1];
+
+  useEffect(() => {
+    if (firstAmount) {
+      axios('https://api.currencyapi.com/v3/latest', {
+        params: {
+          apikey: process.env.REACT_APP_VITE_API_KEY,
+          base_currency: codeFromCurrency,
+          currencies: codeToCurrency,
+        },
+      })
+        .then((response) =>
+          setResultCurrency(response.data.data[codeToCurrency].value)
+        )
+        .catch((error) => console.log(error));
+    }
+  }, [firstAmount, fromCurrency, toCurrency]);
 
   const boxStyles = {
     background: '#fdfdfd',
@@ -25,8 +51,8 @@ function App() {
   };
   return (
     <Container maxWidth='md' sx={boxStyles}>
-      <Typography variant='h5' sx={{ marginBottom: '2rem' }}>
-        Stay Ahead with Accurate Conversions
+      <Typography variant='h5' fontWeight='bold' sx={{ marginBottom: '2rem' }}>
+        실시간 환율 계산기
       </Typography>
       <Grid container spacing={2}>
         <InputAmount />
@@ -38,6 +64,21 @@ function App() {
         <SwitchCurrency />
         <SelectCountry label='To' value={toCurrency} setValue={setToCurrency} />
       </Grid>
+      {firstAmount ? (
+        <Box sx={{ textAlign: 'left', marginTop: '1rem' }}>
+          <Typography>
+            {firstAmount} {fromCurrency}
+          </Typography>
+          <Typography
+            variant='h5'
+            sx={{ marginTop: '5px', fontWeight: 'bold' }}
+          >
+            {resultCurrency * firstAmount} {toCurrency}
+          </Typography>
+        </Box>
+      ) : (
+        ' '
+      )}
     </Container>
   );
 }
