@@ -17,8 +17,9 @@ function App() {
   } = useContext(CurrencyContext);
   // ['🇶🇦', 'QAR', '-', 'Qatar'] +[1] = QAR
   const [resultCurrency, setResultCurrency] = useState(0);
-  const codeFromCurrency = fromCurrency.toString().split(' ')[1];
-  const codeToCurrency = toCurrency.toString().split(' ')[1];
+  const codeFromCurrency = fromCurrency.split(' ')[1];
+  const codeToCurrency = toCurrency.split(' ')[1];
+  console.log(fromCurrency.toString().split(' '));
 
   useEffect(() => {
     if (firstAmount) {
