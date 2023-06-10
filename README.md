@@ -69,14 +69,14 @@
 - [x] `useContext` 활용
 - [x] `useAxios` hook 제작
 - [x] `axios` `param` 접근
+- [x] https://restcountries.com/v3.1/all 국가별 환율 관련 정보 / 이미지 받아오기
 - [ ] `netlify` 활용 배포! (버그 수정 후)
-- [ ] https://restcountries.com/v3.1/all 국가별 환율 관련 정보 / 이미지 받아오기
 
 ---
 
 ### Exchange Rate 기능 실행 영상!
 
-![앱 사용영상]()
+![앱 사용영상]('./src/images/Exchange-Rate.gif')
 
 ---
 
